@@ -29,18 +29,12 @@ public struct Deployment: Hashable {
         public struct Configuration: Hashable {
             /// The configured hardware SKU.
             public let hardware: Hardware.ID
-
-            /// A scaling configuration for a deployment.
-            public struct Scaling: Hashable {
-                /// The maximum number of instances.
-                public let maxInstances: Int
-
-                /// The minimum number of instances.
-                public let minInstances: Int
-            }
-
-            /// The scaling configuration for the deployment.
-            public let scaling: Scaling
+            
+            /// The maximum number of instances.
+            public let maxInstances: Int
+            
+            /// The minimum number of instances.
+            public let minInstances: Int
         }
 
         /// The deployment configuration.
@@ -83,12 +77,6 @@ extension Deployment.Release: Codable {
 extension Deployment.Release.Configuration: Codable {
     public enum CodingKeys: String, CodingKey {
         case hardware
-        case scaling
-    }
-}
-
-extension Deployment.Release.Configuration.Scaling: Codable {
-    public enum CodingKeys: String, CodingKey {
         case minInstances = "min_instances"
         case maxInstances = "max_instances"
     }
